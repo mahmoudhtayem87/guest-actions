@@ -1,0 +1,21 @@
+button
+{
+    padding:0!important;
+    width: 100%;
+}
+.clear
+{
+    background: transparent!important;
+    border: none!important;
+}
+.clear:hover
+{
+    background: transparent!important;
+    border: none!important;
+}
+
+guest-rating
+{
+    display: block!important;
+    width: 48px!important;
+}
