@@ -1,0 +1,13 @@
+<div class="clear-data">
+    <div class="row">
+        <div class="col">
+            <input type="text" [(ngModel)]="object" class="form-input">
+        </div>
+        <button  (click)="clearData()" class="btn btn-primary"> Clear</button>
+    </div>
+    <div class="row">
+        <div class="col-12" *ngFor="let item of Items">
+            {{item}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+.text-area
+{
+    width: 100%;
+}
+.actions
+{
+    justify-content: end;
+    display: flex;
+}
