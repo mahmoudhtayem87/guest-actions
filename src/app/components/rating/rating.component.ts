@@ -31,7 +31,15 @@ export class RatingComponent {
 
     this.IPAddress = (await this.ip.getCurrentUserIpAddress()).ip;
     // @ts-ignore
-    this.Rating = (await this.ratingService.getRating(this.entryId,this.entryType))["aggregateRating"]["ratingValue"];
+    let ratingResponse = await this.ratingService.getRating(this.entryId,this.entryType);
+    // @ts-ignore
+    if (ratingResponse["aggregateRating"])
+    {
+      // @ts-ignore
+      this.Rating = ratingResponse["aggregateRating"]["ratingValue"];
+    }else
+      this.Rating = 0;
+
     // @ts-ignore
     this.lastAction = await this.ratingService.getRatingByIPAddress(this.IPAddress,this.entryId);
     this.getThumbColor();
