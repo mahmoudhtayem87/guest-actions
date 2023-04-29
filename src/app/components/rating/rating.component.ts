@@ -4,7 +4,7 @@ import {RatingService} from "../../services/rating.service";
 import {last} from "rxjs";
 
 @Component({
-  selector: 'app-rating',
+  selector: 'guest-rating',
   templateUrl: './rating.component.html',
   styleUrls: ['./rating.component.css']
 })

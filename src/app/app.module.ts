@@ -7,13 +7,15 @@ import {createCustomElement} from "@angular/elements";
 import { GuestCommentComponent } from './components/comment/comment.component';
 import {FormsModule} from "@angular/forms";
 import { ClearDataComponent } from './components/clear-data/clear-data.component';
+import { ContentPollComponent } from './components/content-poll/content-poll.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RatingComponent,
     GuestCommentComponent,
-    ClearDataComponent
+    ClearDataComponent,
+    ContentPollComponent
   ],
     imports: [
         BrowserModule,
@@ -41,6 +43,11 @@ export class AppModule{
       injector: this.injector
     });
     customElements.define("guest-clear-data", ClearData);
+
+    const ContentPoll = createCustomElement(ContentPollComponent, {
+      injector: this.injector
+    });
+    customElements.define("content-poll", ContentPoll);
 
   }
 }

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 declare const Liferay: any;
 @Component({
-  selector: 'app-clear-data',
+  selector: 'clear-data',
   templateUrl: './clear-data.component.html',
   styleUrls: ['./clear-data.component.css']
 })

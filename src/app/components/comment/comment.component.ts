@@ -6,7 +6,7 @@ import {CommentService} from "../../services/comment.service";
 declare const location: any;
 
 @Component({
-  selector: 'app-comment',
+  selector: 'guest-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
 })

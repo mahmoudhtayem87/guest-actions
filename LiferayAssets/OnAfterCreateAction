@@ -62,8 +62,8 @@ if(ratedByUserId == "0")
 
     }else{
         User newUser =UserLocalServiceUtil.addUser(
-                0, companyId, false, "test", "test", false,
-                screenName, emailAddress, LocaleUtil.getDefault(), "Test",
+                creatorUserId, companyId, false, "test", "test", false,
+                screenName, emailAddress, LocaleUtil.getDefault(), firstName,
                 null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null,
                 UserConstants.TYPE_REGULAR, null, null, null,
                 null, false, new ServiceContext());
