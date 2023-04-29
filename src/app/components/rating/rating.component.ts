@@ -33,23 +33,25 @@ export class RatingComponent {
     // @ts-ignore
     this.Rating = (await this.ratingService.getRating(this.entryId,this.entryType))["aggregateRating"]["ratingValue"];
     // @ts-ignore
-    this.lastAction = await this.ratingService.getRatingByIPAddress(this.IPAddress);
+    this.lastAction = await this.ratingService.getRatingByIPAddress(this.IPAddress,this.entryId);
     this.getThumbColor();
     this.isLoading = false;
   }
 
   getThumbColor()
   {
-    if (!this.lastAction)
+    if (!this.lastAction || this.lastAction.totalCount == 0)
     {
       this.thumbColor = "gray";
       return;
     }
+
     let lastActionItem = this.lastAction["items"][0];
     if (lastActionItem["rating"] == "1")
       this.thumbColor = "var(--primary)"
     else
       this.thumbColor = "gray";
+
   }
   async postRating() {
     this.isLoading = true;

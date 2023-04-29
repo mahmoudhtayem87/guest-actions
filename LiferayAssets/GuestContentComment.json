@@ -1,0 +1,313 @@
+{
+  "enableComments": false,
+  "objectRelationships": [],
+  "enableCategorization": true,
+  "accountEntryRestrictedObjectFieldName": "",
+  "objectActions": [
+    {
+      "conditionExpression": "",
+      "objectActionExecutorKey": "groovy",
+      "errorMessage": {},
+      "active": true,
+      "description": "",
+      "label": {
+        "en_US": "On After Comment Posted"
+      },
+      "externalReferenceCode": "43382c78-d4e3-2755-748d-bdfe9046c921",
+      "objectActionTriggerKey": "onAfterAdd",
+      "name": "onAfterCommentPosted",
+      "parameters": {
+        "script": "import com.liferay.portal.kernel.service.ServiceContext\nimport com.liferay.portal.kernel.service.ServiceContext;\nimport com.liferay.portal.kernel.util.GetterUtil;\nimport com.liferay.portal.kernel.model.Company;\nimport com.liferay.portal.kernel.model.UserConstants;\nimport com.liferay.portal.kernel.model.User;\nimport com.liferay.portal.kernel.service.CompanyLocalServiceUtil;\nimport com.liferay.portal.kernel.service.ServiceContext;\nimport com.liferay.portal.kernel.service.UserLocalServiceUtil;\nimport com.liferay.portal.kernel.util.LocaleUtil;\nimport com.liferay.portal.kernel.util.PortalUtil;\nimport java.util.Calendar;\nimport java.util.GregorianCalendar;\nimport com.liferay.portal.kernel.util.GetterUtil;\nimport com.liferay.portal.kernel.comment.CommentManagerUtil\n\ndef postComment(userId, groupId, className, classPK, commentBody,serviceContext)\n{\n    def userDisplayURLFunction = { _ -> serviceContext } // empty function to set userDisplayURL\n    // Add the comment to the blog entry\n    System.out.println CommentManagerUtil.addComment(userId, groupId, className, classPK, commentBody, userDisplayURLFunction)\n}\n\ndef obj = com.liferay.object.service.ObjectEntryLocalServiceUtil.getObjectEntry(id)\n\n\n\nServiceContext serviceContext  = new ServiceContext();\ndef classPK = GetterUtil.getLong(assetEntryId)\ndef commentBody = comment\ndef className = \"com.liferay.blogs.model.BlogsEntry\"\nlong groupId = GetterUtil.getLong('20119');\nlong companyId = GetterUtil.getLong(obj.companyId);\nCompany company = CompanyLocalServiceUtil.getCompany(companyId);\nString portalURL = company.getPortalURL(groupId);\nfinal long creatorUserId = GetterUtil.getLong('20123');\n\nserviceContext.setCompanyId(companyId);\nserviceContext.setUserId(creatorUserId);\nserviceContext.setPortalURL(portalURL);\nserviceContext.setPathMain(PortalUtil.getPathMain());\nserviceContext.setScopeGroupId(groupId);\n\nfinal boolean autoPassword = false;\nfinal String tempPassword = \"test\";\nfinal boolean autoScreenName = true;\nfinal boolean male = false;\nfinal boolean sendAccountCreationEmail = false;\nfinal long prefixId = -1L;\nfinal long suffixId = -1L;\nfinal long[] siteIds = [ groupId ];\nfinal Calendar dob = new GregorianCalendar(1970, 1, 1);\nlocale = LocaleUtil.getDefault();\nString firstName = \"Guest\";\nString lastName = \"User\";\nString emailAddress = \"temp_user_\"+ipAddress+\"@liferay.com\";\nString screenName = \"temp_user_\"+ipAddress;\nlong entryId =GetterUtil.getLong(assetEntryId);\n\n\n//todo validation required\n\n\nif(ratedByUserId == \"0\")\n{\n\n    User newUser =UserLocalServiceUtil.addUser(\n            0, companyId, false, \"test\", \"test\", false,\n            screenName, emailAddress, LocaleUtil.getDefault(), firstName,\n            null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null,\n            UserConstants.TYPE_REGULAR, null, null, null,\n            null, false, serviceContext);\n    long userId = newUser.userId\n    postComment(userId, groupId, className, classPK, commentBody,serviceContext)\n    def values = obj.getValues();\n    values[\"ratedByUserId\"] = userId;\n    obj.setValues(values);\n    com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);\n    UserLocalServiceUtil.deleteUser(userId)\n\n\n}else\n{\n\n    postComment(GetterUtil.getLong(ratedByUserId), groupId, className, classPK, commentBody,serviceContext)\n}\n\n\n\n\n\n"
+      },
+      "status": {
+        "label_i18n": "Success",
+        "code": 1,
+        "label": "success"
+      }
+    },
+    {
+      "conditionExpression": "",
+      "objectActionExecutorKey": "groovy",
+      "errorMessage": {
+        "en_US": "test"
+      },
+      "active": true,
+      "description": "",
+      "label": {
+        "en_US": "Manual"
+      },
+      "externalReferenceCode": "d68fc16e-532e-e151-734d-aae1ffc3ace1",
+      "objectActionTriggerKey": "standalone",
+      "name": "manual",
+      "parameters": {
+        "script": "import com.liferay.portal.kernel.service.ServiceContext\nimport com.liferay.portal.kernel.service.ServiceContext;\nimport com.liferay.portal.kernel.util.GetterUtil;\nimport com.liferay.portal.kernel.model.Company;\nimport com.liferay.portal.kernel.model.UserConstants;\nimport com.liferay.portal.kernel.model.User;\nimport com.liferay.portal.kernel.service.CompanyLocalServiceUtil;\nimport com.liferay.portal.kernel.service.ServiceContext;\nimport com.liferay.portal.kernel.service.UserLocalServiceUtil;\nimport com.liferay.portal.kernel.util.LocaleUtil;\nimport com.liferay.portal.kernel.util.PortalUtil;\nimport java.util.Calendar;\nimport java.util.GregorianCalendar;\nimport com.liferay.portal.kernel.util.GetterUtil;\nimport com.liferay.portal.kernel.comment.CommentManagerUtil\n\ndef postComment(userId, groupId, className, classPK, commentBody,serviceContext)\n{\n    def userDisplayURLFunction = { _ -> serviceContext } // empty function to set userDisplayURL\n    // Add the comment to the blog entry\n    System.out.println CommentManagerUtil.addComment(userId, groupId, className, classPK, commentBody, userDisplayURLFunction)\n}\n\ndef obj = com.liferay.object.service.ObjectEntryLocalServiceUtil.getObjectEntry(id)\n\n\n\nServiceContext serviceContext  = new ServiceContext();\ndef classPK = GetterUtil.getLong(assetEntryId)\ndef commentBody = comment\ndef className = \"com.liferay.blogs.model.BlogsEntry\"\nlong groupId = GetterUtil.getLong('20119');\nlong companyId = GetterUtil.getLong(obj.companyId);\nCompany company = CompanyLocalServiceUtil.getCompany(companyId);\nString portalURL = company.getPortalURL(groupId);\nfinal long creatorUserId = GetterUtil.getLong('20123');\n\nserviceContext.setCompanyId(companyId);\nserviceContext.setUserId(creatorUserId);\nserviceContext.setPortalURL(portalURL);\nserviceContext.setPathMain(PortalUtil.getPathMain());\nserviceContext.setScopeGroupId(groupId);\n\nfinal boolean autoPassword = false;\nfinal String tempPassword = \"test\";\nfinal boolean autoScreenName = true;\nfinal boolean male = false;\nfinal boolean sendAccountCreationEmail = false;\nfinal long prefixId = -1L;\nfinal long suffixId = -1L;\nfinal long[] siteIds = [ groupId ];\nfinal Calendar dob = new GregorianCalendar(1970, 1, 1);\nlocale = LocaleUtil.getDefault();\nString firstName = \"Guest\";\nString lastName = \"User\";\nString emailAddress = \"temp_user_\"+ipAddress+\"@liferay.com\";\nString screenName = \"temp_user_\"+ipAddress;\nlong entryId =GetterUtil.getLong(assetEntryId);\n\n\n//todo validation required\n\n\nif(ratedByUserId == \"0\")\n{\n\n    User newUser =UserLocalServiceUtil.addUser(\n            0, companyId, false, firstName, lastName, false,\n            screenName, emailAddress, LocaleUtil.getDefault(), lastName,\n            null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null,\n            UserConstants.TYPE_REGULAR, null, null, null,\n            null, false, serviceContext);\n    long userId = newUser.userId\n    postComment(userId, groupId, className, classPK, commentBody,serviceContext)\n    def values = obj.getValues();\n    values[\"ratedByUserId\"] = userId;\n    obj.setValues(values);\n    com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);\n    UserLocalServiceUtil.deleteUser(userId)\n\n\n}else\n{\n\n    postComment(GetterUtil.getLong(ratedByUserId), groupId, className, classPK, commentBody,serviceContext)\n}\n\n\n\n\n\n"
+      },
+      "status": {
+        "label_i18n": "Never Ran",
+        "code": 0,
+        "label": "never-ran"
+      }
+    }
+  ],
+  "accountEntryRestricted": false,
+  "externalReferenceCode": "c6fd0f32-f44e-b640-9d2f-70acc991d388",
+  "objectFields": [
+    {
+      "indexed": true,
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "Asset Entry Id"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "e1075371-0bcb-3a4c-f40c-6967b0f55bd8",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "assetEntryId",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": true,
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "Asset Entry Type"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "3e35fed0-0afa-84c9-c488-50acbcec9835",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "assetEntryType",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": true,
+      "objectFieldSettings": [
+        {
+          "name": "showCounter",
+          "value": "false"
+        }
+      ],
+      "DBType": "Clob",
+      "label": {
+        "en_US": "Comment"
+      },
+      "type": "Clob",
+      "required": false,
+      "externalReferenceCode": "81a35f1b-1ec1-b122-e7b2-5036c5edd611",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "comment",
+      "state": false,
+      "businessType": "LongText"
+    },
+    {
+      "indexed": false,
+      "objectFieldSettings": [],
+      "DBType": "Date",
+      "label": {
+        "en_US": "Create Date"
+      },
+      "type": "Date",
+      "required": false,
+      "externalReferenceCode": "f85fd014-9a8b-5f8b-9b4b-57bd71aaa978",
+      "indexedAsKeyword": false,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "createDate",
+      "state": false,
+      "businessType": "Date"
+    },
+    {
+      "indexed": false,
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "Author"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "bf84dbcd-486d-a36f-4164-5c5bfc1e0f19",
+      "indexedAsKeyword": false,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "creator",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": false,
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "External Reference Code"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "e3626d11-84b8-5368-a2a5-c12042163c54",
+      "indexedAsKeyword": false,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "externalReferenceCode",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": true,
+      "objectFieldSettings": [],
+      "DBType": "Long",
+      "label": {
+        "en_US": "ID"
+      },
+      "type": "Long",
+      "required": false,
+      "externalReferenceCode": "026f2167-4c06-6926-5d1a-a9236591e85f",
+      "indexedAsKeyword": true,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "id",
+      "state": false,
+      "businessType": "LongInteger"
+    },
+    {
+      "indexed": true,
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "IP Address"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "c60cff1d-cdca-4f0b-5832-f4561817a6a4",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "ipAddress",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": true,
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "Last Action User Id"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "364bc051-8e67-6852-a02d-eaea6fa9c376",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "lastActionUserId",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": false,
+      "objectFieldSettings": [],
+      "DBType": "Date",
+      "label": {
+        "en_US": "Modified Date"
+      },
+      "type": "Date",
+      "required": false,
+      "externalReferenceCode": "b2387e62-4733-67c9-9f1e-0e96c7c76f27",
+      "indexedAsKeyword": false,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "modifiedDate",
+      "state": false,
+      "businessType": "Date"
+    },
+    {
+      "indexed": true,
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "Rated by User Id"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "11379f6b-21d2-7e5b-b59c-92c27d757082",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "ratedByUserId",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": true,
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "Recaptcha"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "d66ce723-e031-2553-113d-04313ea21eee",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "recaptcha",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": false,
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "Status"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "834493f6-10fb-bedb-9c03-f5fd5c35764c",
+      "indexedAsKeyword": false,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "status",
+      "state": false,
+      "businessType": "Text"
+    }
+  ],
+  "restContextPath": "/o/c/guestcontentcomments",
+  "scope": "company",
+  "portlet": false,
+  "parameterRequired": false,
+  "enableObjectEntryHistory": false,
+  "titleObjectFieldName": "id",
+  "objectValidationRules": [],
+  "active": true,
+  "defaultLanguageId": "en_US",
+  "label": {
+    "en_US": "Guest Content Comment"
+  },
+  "panelCategoryKey": "applications_menu.applications.custom.apps",
+  "pluralLabel": {
+    "en_US": "Guest Content Comments"
+  },
+  "objectLayouts": [],
+  "system": false,
+  "objectViews": [],
+  "name": "GuestContentComment",
+  "actions": {
+    "permissions": {},
+    "get": {},
+    "update": {},
+    "delete": {}
+  },
+  "status": {
+    "label_i18n": "Approved",
+    "code": 0,
+    "label": "approved"
+  }
+}

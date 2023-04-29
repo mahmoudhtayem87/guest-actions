@@ -39,7 +39,7 @@ export class RatingService {
       })
     };
     let currentUser = Liferay.ThemeDisplay.isSignedIn()?Liferay.ThemeDisplay.getUserId():0;
-    let lastAction = await this.getRatingByIPAddress(ip);
+    let lastAction = await this.getRatingByIPAddress(ip,entryId);
     let lastActionUserId = "";
     // @ts-ignore
     if (lastAction && lastAction["items"] && lastAction["items"][0])
@@ -70,9 +70,9 @@ export class RatingService {
     return prom;
   }
 
-  public async getRatingByIPAddress(ipAddress:any)
+  public async getRatingByIPAddress(ipAddress:any,entryId:any)
   {
-    let baseURL = `/o/c/guestcontentratingratings/?filter=ipAddress%20eq%20%27${ipAddress}%27&&sort=id%3Adesc&p_auth=${Liferay.authToken}`;
+    let baseURL = `/o/c/guestcontentratingratings/?filter=ipAddress%20eq%20%27${ipAddress}%27%20and%20assetEntryId%20eq%20%27${entryId}%27&sort=id%3Adesc&p_auth=${Liferay.authToken}`;
     let prom = new Promise((resolve, reject)=>{
       this.http.get(baseURL).subscribe(result=>{resolve(result)},error=>{reject(error)});
     });
