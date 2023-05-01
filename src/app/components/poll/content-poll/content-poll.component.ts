@@ -37,12 +37,14 @@ export class ContentPollComponent implements OnInit{
   @Input('actionClasses')
   public actionClasses: any = "";
 
+  public entryKey = "";
   async loadData()
   {
     this.pollResultTotalCount = 0;
     this.isLoading = true;
     this.IPAddress = (await this.ip.getCurrentUserIpAddress()).ip;
     this.pollSchemaRaw = await this.service.getPollStructure(this.entryId);
+    this.entryKey = this.pollSchemaRaw.key;
     this.pollResult = await this.service.getPollResult(this.entryId);
     this.pollResult = this.pollResult.facets[0].facetValues;
     this.getResponseTotalCount();
@@ -76,7 +78,7 @@ export class ContentPollComponent implements OnInit{
 
   async vote() {
     this.isLoading = true;
-    await this.service.postVote(this.entryId, this.selectedOption, this.IPAddress);
+    await this.service.postVote(this.entryId,this.entryKey, this.selectedOption, this.IPAddress);
     this.isLoading = false;
     this.loadData();
   }

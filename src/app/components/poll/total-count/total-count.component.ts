@@ -19,7 +19,7 @@ export class TotalCountComponent  implements OnInit{
   {
     this.pollResultTotalCount = 0;
     this.isLoading = true;
-    this.pollResult = await this.service.getPollResult(this.entryId);
+    this.pollResult = await this.service.getPollResultByEntryKey(this.entryId);
     this.pollResult = this.pollResult.facets[0].facetValues;
     this.getResponseTotalCount();
     this.isLoading = false;
@@ -33,9 +33,11 @@ export class TotalCountComponent  implements OnInit{
     }
   }
 
+
   @Input('entryId')
   entryId : string = "";
-
+  @Input('countLabel')
+  CountLabel : string = "Voted";
   ngOnInit(): void {
     this.loadData();
   }

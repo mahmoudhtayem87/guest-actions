@@ -12,7 +12,7 @@ export class ContentPollService {
   private baseUrl_PollStructure =  '/o/headless-delivery/v1.0/structured-contents';
   constructor(private http:HttpClient) { }
 
-  public postVote(WebContentId : string, VoteValue:string,ipAddress : string)
+  public postVote(WebContentId : string,WebContentKey:string, VoteValue:string,ipAddress : string)
   {
     let prom = new Promise((resolve, reject)=>{
       const httpOptions = {
@@ -23,7 +23,9 @@ export class ContentPollService {
       let body = {
         entryId : WebContentId,
         voteValue : VoteValue,
-        ipAddress: ipAddress
+        ipAddress: ipAddress,
+        entryKey:WebContentKey
+
       }
       this.http.post(`${this.baseUrl_VotingObject}?p_auth=${Liferay.authToken}`,JSON.stringify(body),httpOptions).subscribe(result=>{
         resolve(result);
@@ -42,7 +44,7 @@ export class ContentPollService {
           'Accept-Language':Liferay.ThemeDisplay.getLanguageId().replace('_','-')
         })
       };
-      this.http.get(`${this.baseUrl_PollStructure}/${WebContentId}?fields=contentFields&p_auth=${Liferay.authToken}`,httpOptions).subscribe(result=>{
+      this.http.get(`${this.baseUrl_PollStructure}/${WebContentId}?fields=key,contentFields&p_auth=${Liferay.authToken}`,httpOptions).subscribe(result=>{
         resolve(result);
       },error=>{
         reject(error)
@@ -64,5 +66,17 @@ export class ContentPollService {
     return prom;
   }
 
+  public getPollResultByEntryKey(WebContentKey:string)
+  {
+    let prom = new Promise((resolve, reject)=>{
+
+      this.http.get(`${this.baseUrl_VotingObject}/?aggregationTerms=voteValue&flatten=facets&filter=entryKey%20eq%20%27${WebContentKey}%27&p_auth=${Liferay.authToken}`).subscribe(result=>{
+        resolve(result);
+      },error=>{
+        reject(error)
+      })
+    });
+    return prom;
+  }
 
 }

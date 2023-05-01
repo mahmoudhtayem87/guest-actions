@@ -1,14 +1,9 @@
 <div *ngIf="!isLoading" class="clear" >
 <span class="c-inner" tabindex="-1">
-    <span class="inline-item inline-item-before">
-        <svg class="lexicon-icon lexicon-icon-thumbs-up" role="presentation">
-            <use xlink:href="/o/classic-theme/images/clay/icons.svg#thumbs-up"></use>
-        </svg>
-    </span>
     <span class="inline-item">
         <span class="counter" style="min-width: 2ch;">
             <span class="current">
-               {{pollResultTotalCount}}
+               {{pollResultTotalCount}} {{CountLabel}}
             </span>
         </span>
     </span>
