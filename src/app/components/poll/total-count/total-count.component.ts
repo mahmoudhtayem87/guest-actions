@@ -14,26 +14,18 @@ export class TotalCountComponent  implements OnInit{
   constructor(private ip:IpUtilService,private service:ContentPollService) {
 
   }
-
   async loadData()
   {
     this.pollResultTotalCount = 0;
     this.isLoading = true;
     this.pollResult = await this.service.getPollResultByEntryKey(this.entryId);
-    this.pollResult = this.pollResult.facets[0].facetValues;
     this.getResponseTotalCount();
     this.isLoading = false;
   }
-
   getResponseTotalCount()
   {
-    for (let i = 0 ; i < this.pollResult.length ; i++)
-    {
-      this.pollResultTotalCount+=this.pollResult[i].numberOfOccurrences;
-    }
+    this.pollResultTotalCount = this.pollResult.totalCount;
   }
-
-
   @Input('entryId')
   entryId : string = "";
   @Input('countLabel')
@@ -41,6 +33,4 @@ export class TotalCountComponent  implements OnInit{
   ngOnInit(): void {
     this.loadData();
   }
-
-
 }

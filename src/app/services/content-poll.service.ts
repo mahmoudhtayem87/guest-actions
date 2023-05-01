@@ -69,8 +69,7 @@ export class ContentPollService {
   public getPollResultByEntryKey(WebContentKey:string)
   {
     let prom = new Promise((resolve, reject)=>{
-
-      this.http.get(`${this.baseUrl_VotingObject}/?aggregationTerms=voteValue&flatten=facets&filter=entryKey%20eq%20%27${WebContentKey}%27&p_auth=${Liferay.authToken}`).subscribe(result=>{
+      this.http.get(`${this.baseUrl_VotingObject}/?filter=entryKey%20eq%20%27${WebContentKey}%27&p_auth=${Liferay.authToken}`).subscribe(result=>{
         resolve(result);
       },error=>{
         reject(error)
