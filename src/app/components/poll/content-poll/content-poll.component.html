@@ -7,11 +7,11 @@
 <div *ngIf="!isLoading && pollType == 'image'" slot="description">
     <div class="md-w-60 sm-w-100">
         <div class="choice-option" *ngFor="let option of PollOptions;let i = index">
-            <div class="option-progress black d-flex mb-2" style="--progress:{{getProgress(getText(option,'OptionKey'))}}%">
+            <div class="option-progress {{getProgressColor(getText(option,'OptionKey'))}} d-flex mb-2" style="--progress:{{getProgress(getText(option,'OptionKey'))}}%">
                 <div class="image-thumb">
                     <img width="64px" src="{{getImage(option,'OptionImage')}}"/>
                 </div>
-                <div class="content white text-label">
+                <div class="content  text-label">
                     <span class="my-auto d-flex">
                         <input type="radio" class="m-0 p-0 my-auto px-1 mx-1" id="imageText" name="selectedOption" [(ngModel)]="selectedOption" value="{{getText(option,'OptionKey')}}">
                         <label for="imageText" class="m-0 p-0 my-auto px-1">{{getText(option,'OptionLabel')}}</label>
@@ -28,8 +28,8 @@
 <div *ngIf="!isLoading && pollType == 'text'" slot="description">
     <div class="md-w-60 sm-w-100">
         <div class="choice-option" *ngFor="let option of PollOptions;let i = index">
-            <div class="option-progress black d-flex mb-2" style="--progress:{{getProgress(getText(option,'OptionKey'))}}%">
-                <div class="content white text-label">
+            <div class="option-progress {{getProgressColor(getText(option,'OptionKey'))}} d-flex mb-2" style="--progress:{{getProgress(getText(option,'OptionKey'))}}%">
+                <div class="content  text-label">
                     <span class="my-auto d-flex">
                         <input type="radio" class="m-0 p-0 my-auto px-1 mx-1" id="Text" name="selectedOption" [(ngModel)]="selectedOption" value="{{getText(option,'OptionKey')}}">
                         <label for="Text" class="m-0 p-0 my-auto px-1">{{getText(option,'OptionLabel')}}</label>

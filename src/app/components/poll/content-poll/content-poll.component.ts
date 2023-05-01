@@ -58,6 +58,12 @@ export class ContentPollComponent implements OnInit{
     let keyResponses = this.pollResult.filter( Occurrences => Occurrences.term == key)[0];
     return (Math.ceil((keyResponses.numberOfOccurrences / this.pollResultTotalCount) *100));
   }
+  public getProgressColor(key:string)
+  {
+    // @ts-ignore
+    let keyResponses = this.pollResult.filter( Occurrences => Occurrences.term == key)[0];
+    return ((Math.ceil((keyResponses.numberOfOccurrences / this.pollResultTotalCount) *100))) > 50 ? "black":"grey";
+  }
   getResponseTotalCount()
   {
     for (let i = 0 ; i < this.pollResult.length ; i++)
