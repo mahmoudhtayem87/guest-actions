@@ -7,7 +7,8 @@ import {createCustomElement} from "@angular/elements";
 import { GuestCommentComponent } from './components/comment/comment.component';
 import {FormsModule} from "@angular/forms";
 import { ClearDataComponent } from './components/clear-data/clear-data.component';
-import { ContentPollComponent } from './components/content-poll/content-poll.component';
+import { ContentPollComponent } from './components/poll/content-poll/content-poll.component';
+import { TotalCountComponent } from './components/poll/total-count/total-count.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ContentPollComponent } from './components/content-poll/content-poll.com
     RatingComponent,
     GuestCommentComponent,
     ClearDataComponent,
-    ContentPollComponent
+    ContentPollComponent,
+    TotalCountComponent
   ],
     imports: [
         BrowserModule,
@@ -48,6 +50,10 @@ export class AppModule{
       injector: this.injector
     });
     customElements.define("content-poll", ContentPoll);
+    const ContentPollTotalVotes = createCustomElement(TotalCountComponent, {
+      injector: this.injector
+    });
+    customElements.define("content-poll-total", ContentPollTotalVotes);
 
   }
 }

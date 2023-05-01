@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ContentPollService} from "../../services/content-poll.service";
-import {IpUtilService} from "../../services/ip-util.service";
+import {ContentPollService} from "../../../services/content-poll.service";
+import {IpUtilService} from "../../../services/ip-util.service";
 
 @Component({
   selector: 'content-poll',
