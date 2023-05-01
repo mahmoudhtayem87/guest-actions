@@ -38,20 +38,32 @@ export class ContentPollComponent implements OnInit{
   public actionClasses: any = "";
 
   public entryKey = "";
+  async prepareResults() {
+    //this.pollResult.facets[0].facetValues
+    for (let i = 0 ; i < this.PollOptions.length ; i ++)
+    {
+      var key = this.getText(this.PollOptions[i],'OptionKey');
+      var result = {
+        numberOfOccurrences:await this.service.getTotalVotesByAnswer(this.entryId,key),
+        term: key
+      };
+      this.pollResult.facets[0].facetValues.push(result);
+    }
+
+  }
   async loadData()
   {
     this.pollResultTotalCount = 0;
     this.isLoading = true;
     this.IPAddress = (await this.ip.getCurrentUserIpAddress()).ip;
     this.pollSchemaRaw = await this.service.getPollStructure(this.entryId);
-    this.entryKey = this.pollSchemaRaw.key;
     this.pollResult = await this.service.getPollResult(this.entryId);
+    await this.prepareSchema();
+    this.entryKey = this.pollSchemaRaw.key;
     this.pollResult = this.pollResult.facets[0].facetValues;
     this.getResponseTotalCount();
-    this.prepareSchema();
     this.isLoading = false;
   }
-
   public getProgress(key:string)
   {
     // @ts-ignore
@@ -66,12 +78,13 @@ export class ContentPollComponent implements OnInit{
   }
   getResponseTotalCount()
   {
+    console.log(this.pollResult)
     for (let i = 0 ; i < this.pollResult.length ; i++)
     {
       this.pollResultTotalCount+=this.pollResult[i].numberOfOccurrences;
     }
   }
-  prepareSchema()
+  async prepareSchema()
   {
     let contentFields = this.pollSchemaRaw["contentFields"];
     // @ts-ignore
@@ -79,16 +92,18 @@ export class ContentPollComponent implements OnInit{
     this.pollType = rawType.contentFieldValue.data== "Image Poll"?"image":"text";
     // @ts-ignore
     this.PollOptions  = contentFields.filter(element=>element.name == "PollOptions");
+    if (this.pollResult.facets[0].facetValues.length == 0)
+    {
+      await this.prepareResults();
+    }
 
   }
-
   async vote() {
     this.isLoading = true;
     await this.service.postVote(this.entryId,this.entryKey, this.selectedOption, this.IPAddress);
     this.isLoading = false;
     this.loadData();
   }
-
   public getImage(element:any,field:string)
   {
     // @ts-ignore

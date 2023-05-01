@@ -78,5 +78,18 @@ export class ContentPollService {
     });
     return prom;
   }
+  public getTotalVotesByAnswer(WebContentId:string,VoteKey:string)
+  {
+    let prom = new Promise((resolve, reject)=>{
+
+      this.http.get(`${this.baseUrl_VotingObject}/?filter=voteValue%20eq%20%27${VoteKey}%27%20and%20entryId%20eq%20%27${WebContentId}%27&p_auth=${Liferay.authToken}`).subscribe(result=>{
+        // @ts-ignore
+        resolve(result.totalCount);
+      },error=>{
+        reject(error)
+      })
+    });
+    return prom;
+  }
 
 }
