@@ -14,7 +14,7 @@
                 <div class="content white text-label">
                     <span class="my-auto d-flex">
                         <input type="radio" class="m-0 p-0 my-auto px-1 mx-1" id="imageText" name="selectedOption" [(ngModel)]="selectedOption" value="{{getText(option,'OptionKey')}}">
-                        <label for="imageText" class="m-0 p-0 my-auto px-1">{{getText(option,'OptionLabel')}}</label>
+                        <label for="imageText" class="m-0 p-0 my-auto px-1">{{getText(option,'OptionLabel')}}</label> {{getProgress(getText(option,'OptionKey'))}}
                     </span>
                 </div>
             </div>
