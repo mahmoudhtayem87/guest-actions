@@ -1,93 +1,15 @@
 {
-  "enableComments": false,
+  "enableComments": true,
   "objectRelationships": [],
+  "accountEntryRestrictedObjectFieldId": 0,
   "enableCategorization": true,
-  "accountEntryRestrictedObjectFieldName": "",
-  "objectActions": [
-    {
-      "conditionExpression": "",
-      "objectActionExecutorKey": "groovy",
-      "errorMessage": {
-        "en_US": "User has not been created!"
-      },
-      "active": true,
-      "description": "",
-      "label": {
-        "en_US": "Test"
-      },
-      "externalReferenceCode": "de4a6517-7741-f767-d727-b8f9c2cce8bc",
-      "objectActionTriggerKey": "standalone",
-      "name": "test",
-      "parameters": {
-        "script": "import com.liferay.portal.kernel.service.ServiceContext\nimport com.liferay.ratings.kernel.service.RatingsEntryLocalServiceUtil\nimport com.liferay.portal.kernel.service.ServiceContext;\nimport com.liferay.portal.kernel.util.GetterUtil;\nimport com.liferay.portal.kernel.model.Company;\nimport com.liferay.portal.kernel.model.UserConstants;\nimport com.liferay.portal.kernel.model.User;\nimport com.liferay.portal.kernel.service.CompanyLocalServiceUtil;\nimport com.liferay.portal.kernel.service.ServiceContext;\nimport com.liferay.portal.kernel.service.UserLocalServiceUtil;\nimport com.liferay.portal.kernel.util.LocaleUtil;\nimport com.liferay.portal.kernel.util.PortalUtil;\nimport java.util.Calendar;\nimport java.util.GregorianCalendar;\nimport com.liferay.portal.kernel.util.GetterUtil;\n\ndef obj = com.liferay.object.service.ObjectEntryLocalServiceUtil.getObjectEntry(id)\n\n\n\nServiceContext serviceContext  = new ServiceContext();\n\n\nlong groupId = GetterUtil.getLong(obj.groupId);\nlong companyId = GetterUtil.getLong(obj.companyId);\nCompany company = CompanyLocalServiceUtil.getCompany(companyId);\nString portalURL = company.getPortalURL(groupId);\nfinal long creatorUserId = GetterUtil.getLong('20123');\n\nserviceContext.setCompanyId(companyId);\nserviceContext.setUserId(creatorUserId);\nserviceContext.setPortalURL(portalURL);\nserviceContext.setPathMain(PortalUtil.getPathMain());\nserviceContext.setScopeGroupId(groupId);\n\nfinal boolean autoPassword = false;\nfinal String tempPassword = \"test\";\nfinal boolean autoScreenName = true;\nfinal boolean male = false;\nfinal boolean sendAccountCreationEmail = false;\nfinal long prefixId = -1L;\nfinal long suffixId = -1L;\nfinal long[] siteIds = [ groupId ];\nfinal Calendar dob = new GregorianCalendar(1970, 1, 1);\nlocale = LocaleUtil.getDefault();\nString firstName = \"temp_user_first_\"+ipAddress;\nString lastName = \"temp_user_last_\"+ipAddress;\nString emailAddress = \"temp_user_\"+ipAddress+\"@liferay.com\";\nString screenName = \"temp_user_\"+ipAddress;\nlong entryId =GetterUtil.getLong(assetEntryId);\ndouble score = GetterUtil.getLong(rating)\n\nif(ratedByUserId == \"0\")\n{\n    User newUser =UserLocalServiceUtil.addUser(\n            0, companyId, false, \"test\", \"test\", false,\n            screenName, emailAddress, LocaleUtil.getDefault(), \"Test\",\n            null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null,\n            UserConstants.TYPE_REGULAR, null, null, null,\n            null, false, new ServiceContext());\n    long userId = newUser.userId\n    RatingsEntryLocalServiceUtil.updateEntry(userId, \"com.liferay.blogs.model.BlogsEntry\", entryId, score, serviceContext)\n\n    def values = obj.getValues();\n    values[\"ratedByUserId\"] = userId;\n    obj.setValues(values);\n    com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);\n    \n    UserLocalServiceUtil.deleteUser(userId)\n}else\n{\n\n    RatingsEntryLocalServiceUtil.updateEntry(GetterUtil.getLong(ratedByUserId), \"com.liferay.blogs.model.BlogsEntry\", entryId, score, serviceContext)\n}\n\n\n\n\n\n"
-      },
-      "status": {
-        "label_i18n": "Success",
-        "code": 1,
-        "label": "success"
-      }
-    },
-    {
-      "conditionExpression": "",
-      "objectActionExecutorKey": "groovy",
-      "errorMessage": {},
-      "active": true,
-      "description": "",
-      "label": {
-        "en_US": "Rate Asset"
-      },
-      "externalReferenceCode": "ac92cd0f-bb7c-5ce6-4151-b9c2b4b335e2",
-      "objectActionTriggerKey": "onAfterAdd",
-      "name": "rateAsset",
-      "parameters": {
-        "script": "import com.liferay.portal.kernel.service.ServiceContext\nimport com.liferay.ratings.kernel.service.RatingsEntryLocalServiceUtil\nimport com.liferay.portal.kernel.service.ServiceContext;\nimport com.liferay.portal.kernel.util.GetterUtil;\nimport com.liferay.portal.kernel.model.Company;\nimport com.liferay.portal.kernel.model.UserConstants;\nimport com.liferay.portal.kernel.model.User;\nimport com.liferay.portal.kernel.service.CompanyLocalServiceUtil;\nimport com.liferay.portal.kernel.service.ServiceContext;\nimport com.liferay.portal.kernel.service.UserLocalServiceUtil;\nimport com.liferay.portal.kernel.util.LocaleUtil;\nimport com.liferay.portal.kernel.util.PortalUtil;\nimport java.util.Calendar;\nimport java.util.GregorianCalendar;\nimport com.liferay.portal.kernel.util.GetterUtil;\n\ndef obj = com.liferay.object.service.ObjectEntryLocalServiceUtil.getObjectEntry(id)\n\n\n\nServiceContext serviceContext  = new ServiceContext();\n\n\nlong groupId = GetterUtil.getLong(obj.groupId);\nlong companyId = GetterUtil.getLong(obj.companyId);\nCompany company = CompanyLocalServiceUtil.getCompany(companyId);\nString portalURL = company.getPortalURL(groupId);\nfinal long creatorUserId = GetterUtil.getLong('20123');\n\nserviceContext.setCompanyId(companyId);\nserviceContext.setUserId(creatorUserId);\nserviceContext.setPortalURL(portalURL);\nserviceContext.setPathMain(PortalUtil.getPathMain());\nserviceContext.setScopeGroupId(groupId);\n\nfinal boolean autoPassword = false;\nfinal String tempPassword = \"test\";\nfinal boolean autoScreenName = true;\nfinal boolean male = false;\nfinal boolean sendAccountCreationEmail = false;\nfinal long prefixId = -1L;\nfinal long suffixId = -1L;\nfinal long[] siteIds = [ groupId ];\nfinal Calendar dob = new GregorianCalendar(1970, 1, 1);\nlocale = LocaleUtil.getDefault();\nString firstName = \"temp_user_first_\"+ipAddress;\nString lastName = \"temp_user_last_\"+ipAddress;\nString emailAddress = \"temp_user_\"+ipAddress+\"@liferay.com\";\nString screenName = \"temp_user_\"+ipAddress;\nlong entryId =GetterUtil.getLong(assetEntryId);\ndouble score = GetterUtil.getLong(rating)\n\n\n//todo validation required\n\n\nif(ratedByUserId == \"0\")\n{\n    if(lastActionUserId != \"\")\n    {\n        RatingsEntryLocalServiceUtil.updateEntry(GetterUtil.getLong(lastActionUserId), \"com.liferay.blogs.model.BlogsEntry\", entryId, score, serviceContext)\n\n    }else{\n        User newUser =UserLocalServiceUtil.addUser(\n                0, companyId, false, \"test\", \"test\", false,\n                screenName, emailAddress, LocaleUtil.getDefault(), \"Test\",\n                null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null,\n                UserConstants.TYPE_REGULAR, null, null, null,\n                null, false, new ServiceContext());\n        long userId = newUser.userId\n        RatingsEntryLocalServiceUtil.updateEntry(userId, \"com.liferay.blogs.model.BlogsEntry\", entryId, score, serviceContext)\n    \n        def values = obj.getValues();\n        values[\"ratedByUserId\"] = userId;\n        obj.setValues(values);\n        com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);\n    \n        UserLocalServiceUtil.deleteUser(userId)\n    }\n\n}else\n{\n\n    RatingsEntryLocalServiceUtil.updateEntry(GetterUtil.getLong(ratedByUserId), \"com.liferay.blogs.model.BlogsEntry\", entryId, score, serviceContext)\n}\n\n\n\n\n\n"
-      },
-      "status": {
-        "label_i18n": "Success",
-        "code": 1,
-        "label": "success"
-      }
-    }
-  ],
+  "objectActions": [],
   "accountEntryRestricted": false,
-  "externalReferenceCode": "c6fd0f32-f44e-b640-9d2f-70acc991d36f",
+  "externalReferenceCode": "34247c4c-48fb-0b3f-9b2e-30391c014717",
   "objectFields": [
     {
-      "indexed": true,
-      "objectFieldSettings": [],
-      "DBType": "String",
-      "label": {
-        "en_US": "Asset Entry Id"
-      },
-      "type": "String",
-      "required": false,
-      "externalReferenceCode": "e1075371-0bcb-3a4c-f40c-6967b0f55bd8",
-      "indexedAsKeyword": false,
-      "system": false,
-      "indexedLanguageId": "en_US",
-      "name": "assetEntryId",
-      "state": false,
-      "businessType": "Text"
-    },
-    {
-      "indexed": true,
-      "objectFieldSettings": [],
-      "DBType": "String",
-      "label": {
-        "en_US": "Asset Entry Type"
-      },
-      "type": "String",
-      "required": false,
-      "externalReferenceCode": "3e35fed0-0afa-84c9-c488-50acbcec9835",
-      "indexedAsKeyword": false,
-      "system": false,
-      "indexedLanguageId": "en_US",
-      "name": "assetEntryType",
-      "state": false,
-      "businessType": "Text"
-    },
-    {
       "indexed": false,
+      "defaultValue": "",
       "objectFieldSettings": [],
       "DBType": "Date",
       "label": {
@@ -95,7 +17,7 @@
       },
       "type": "Date",
       "required": false,
-      "externalReferenceCode": "6a9f1776-140b-c683-7992-92ccb78b6186",
+      "externalReferenceCode": "ac487e68-d9d2-f3b1-ac43-33b8816b591b",
       "indexedAsKeyword": false,
       "system": true,
       "indexedLanguageId": "",
@@ -105,6 +27,7 @@
     },
     {
       "indexed": false,
+      "defaultValue": "",
       "objectFieldSettings": [],
       "DBType": "String",
       "label": {
@@ -112,7 +35,7 @@
       },
       "type": "String",
       "required": false,
-      "externalReferenceCode": "74ec3c17-dbea-8e42-5df5-77892eaf01d5",
+      "externalReferenceCode": "cf1ab4b8-510d-136b-6b6e-c37a13696544",
       "indexedAsKeyword": false,
       "system": true,
       "indexedLanguageId": "",
@@ -121,7 +44,54 @@
       "businessType": "Text"
     },
     {
+      "indexed": true,
+      "defaultValue": "",
+      "objectFieldSettings": [
+        {
+          "name": "showCounter",
+          "value": "false"
+        }
+      ],
+      "DBType": "String",
+      "label": {
+        "en_US": "EntryId"
+      },
+      "type": "String",
+      "required": true,
+      "externalReferenceCode": "7aa0965e-62f6-2b2e-e0f5-c98fa2d31aeb",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "entryId",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": true,
+      "defaultValue": "",
+      "objectFieldSettings": [
+        {
+          "name": "showCounter",
+          "value": "false"
+        }
+      ],
+      "DBType": "String",
+      "label": {
+        "en_US": "entryKey"
+      },
+      "type": "String",
+      "required": true,
+      "externalReferenceCode": "e490d4fd-9c30-9793-6cbe-f89eec269b74",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "entryKey",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
       "indexed": false,
+      "defaultValue": "",
       "objectFieldSettings": [],
       "DBType": "String",
       "label": {
@@ -129,7 +99,7 @@
       },
       "type": "String",
       "required": false,
-      "externalReferenceCode": "473beaae-a1da-edb4-2784-5ca411c62a80",
+      "externalReferenceCode": "b11f4f65-3b24-8d48-e6cf-b2f5ebc41fbd",
       "indexedAsKeyword": false,
       "system": true,
       "indexedLanguageId": "",
@@ -139,6 +109,7 @@
     },
     {
       "indexed": true,
+      "defaultValue": "",
       "objectFieldSettings": [],
       "DBType": "Long",
       "label": {
@@ -146,7 +117,7 @@
       },
       "type": "Long",
       "required": false,
-      "externalReferenceCode": "59be09b2-b2ed-2e70-34a3-6b8e38cc3e17",
+      "externalReferenceCode": "2d92de82-ced9-eb60-f3a5-05b4b375e18c",
       "indexedAsKeyword": true,
       "system": true,
       "indexedLanguageId": "",
@@ -156,14 +127,20 @@
     },
     {
       "indexed": true,
-      "objectFieldSettings": [],
+      "defaultValue": "",
+      "objectFieldSettings": [
+        {
+          "name": "showCounter",
+          "value": "false"
+        }
+      ],
       "DBType": "String",
       "label": {
-        "en_US": "IP Address"
+        "en_US": "IPAddress"
       },
       "type": "String",
       "required": false,
-      "externalReferenceCode": "c60cff1d-cdca-4f0b-5832-f4561817a6a4",
+      "externalReferenceCode": "0e02bd3b-af4f-0763-ad79-536202447435",
       "indexedAsKeyword": false,
       "system": false,
       "indexedLanguageId": "en_US",
@@ -172,24 +149,8 @@
       "businessType": "Text"
     },
     {
-      "indexed": true,
-      "objectFieldSettings": [],
-      "DBType": "String",
-      "label": {
-        "en_US": "Last Action User Id"
-      },
-      "type": "String",
-      "required": false,
-      "externalReferenceCode": "364bc051-8e67-6852-a02d-eaea6fa9c376",
-      "indexedAsKeyword": false,
-      "system": false,
-      "indexedLanguageId": "en_US",
-      "name": "lastActionUserId",
-      "state": false,
-      "businessType": "Text"
-    },
-    {
       "indexed": false,
+      "defaultValue": "",
       "objectFieldSettings": [],
       "DBType": "Date",
       "label": {
@@ -197,7 +158,7 @@
       },
       "type": "Date",
       "required": false,
-      "externalReferenceCode": "23f3a810-5e7e-db76-5810-0506bc07c08e",
+      "externalReferenceCode": "38bd03dc-e149-49f4-e717-a2568a351a6c",
       "indexedAsKeyword": false,
       "system": true,
       "indexedLanguageId": "",
@@ -206,58 +167,8 @@
       "businessType": "Date"
     },
     {
-      "indexed": true,
-      "objectFieldSettings": [],
-      "DBType": "String",
-      "label": {
-        "en_US": "Rated by User Id"
-      },
-      "type": "String",
-      "required": false,
-      "externalReferenceCode": "11379f6b-21d2-7e5b-b59c-92c27d757082",
-      "indexedAsKeyword": false,
-      "system": false,
-      "indexedLanguageId": "en_US",
-      "name": "ratedByUserId",
-      "state": false,
-      "businessType": "Text"
-    },
-    {
-      "indexed": true,
-      "objectFieldSettings": [],
-      "DBType": "String",
-      "label": {
-        "en_US": "Rating"
-      },
-      "type": "String",
-      "required": false,
-      "externalReferenceCode": "20c1344c-be49-ec42-7480-31542b09a00a",
-      "indexedAsKeyword": false,
-      "system": false,
-      "indexedLanguageId": "en_US",
-      "name": "rating",
-      "state": false,
-      "businessType": "Text"
-    },
-    {
-      "indexed": true,
-      "objectFieldSettings": [],
-      "DBType": "String",
-      "label": {
-        "en_US": "Recaptcha"
-      },
-      "type": "String",
-      "required": false,
-      "externalReferenceCode": "d66ce723-e031-2553-113d-04313ea21eee",
-      "indexedAsKeyword": false,
-      "system": false,
-      "indexedLanguageId": "en_US",
-      "name": "recaptcha",
-      "state": false,
-      "businessType": "Text"
-    },
-    {
       "indexed": false,
+      "defaultValue": "",
       "objectFieldSettings": [],
       "DBType": "String",
       "label": {
@@ -265,35 +176,55 @@
       },
       "type": "String",
       "required": false,
-      "externalReferenceCode": "ccab5cb0-a1ec-4e9f-ccb5-71c4e27a3dca",
+      "externalReferenceCode": "042e3bd4-32ce-c66e-7a59-c9521fb43d19",
       "indexedAsKeyword": false,
       "system": true,
       "indexedLanguageId": "",
       "name": "status",
       "state": false,
       "businessType": "Text"
+    },
+    {
+      "indexed": true,
+      "defaultValue": "",
+      "objectFieldSettings": [
+        {
+          "name": "showCounter",
+          "value": "false"
+        }
+      ],
+      "DBType": "String",
+      "label": {
+        "en_US": "VoteValue"
+      },
+      "type": "String",
+      "required": true,
+      "externalReferenceCode": "df36b6b9-2e42-a792-6f51-fab75b4ed15d",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "voteValue",
+      "state": false,
+      "businessType": "Text"
     }
   ],
-  "restContextPath": "/o/c/guestcontentratingratings",
   "scope": "company",
   "portlet": false,
   "parameterRequired": false,
   "enableObjectEntryHistory": false,
-  "titleObjectFieldName": "id",
-  "objectValidationRules": [],
+  "titleObjectFieldName": "createDate",
   "active": true,
-  "defaultLanguageId": "en_US",
   "label": {
-    "en_US": "Guest Content Rating"
+    "en_US": "Content Voting"
   },
   "panelCategoryKey": "applications_menu.applications.custom.apps",
   "pluralLabel": {
-    "en_US": "Guest Content Ratings"
+    "en_US": "Content Votings"
   },
   "objectLayouts": [],
   "system": false,
   "objectViews": [],
-  "name": "GuestContentRatingRating",
+  "name": "ContentVoting",
   "actions": {
     "permissions": {},
     "get": {},

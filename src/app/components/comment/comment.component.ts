@@ -19,6 +19,9 @@ export class GuestCommentComponent {
     @Input('entryType')
     entryType:string = "";
 
+    @Input('objectDefinitionId')
+    ObjectDefinitionId = "";
+
     @Input('buttonLabel')
     buttonLabel:string = "Reply";
     constructor(private ip:IpUtilService, private commentService:CommentService) {
@@ -37,7 +40,7 @@ export class GuestCommentComponent {
             console.log(this.entryId);
             console.log(this.buttonLabel);
         }
-        await this.commentService.submitComment(this.IPAddress,this.entryId,this.entryType,this.comment);
+        await this.commentService.submitComment(this.IPAddress,this.entryId,this.entryType,this.comment,this.ObjectDefinitionId);
         this.isLoading = false;
         location.reload();
 

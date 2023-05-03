@@ -14,7 +14,7 @@ export class CommentService {
 
 
 
-  public async submitComment(ip:any,entryId:any,entryType:any,comment:any)
+  public async submitComment(ip:any,entryId:any,entryType:any,comment:any,objectDefinitionId="")
   {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -30,7 +30,8 @@ export class CommentService {
       comment:comment,
       ratedByUserId : currentUser,
       recaptcha:'',
-      lastActionUserId:''
+      lastActionUserId:'',
+      objectDefinitionId:objectDefinitionId
     }
     let prom = new Promise((resolve, reject)=>{
       this.http.post(`${this.serviceUrl}?p_auth=${Liferay.authToken}`,JSON.stringify(body),httpOptions).subscribe(result=>{

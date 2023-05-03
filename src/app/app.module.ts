@@ -9,6 +9,7 @@ import {FormsModule} from "@angular/forms";
 import { ClearDataComponent } from './components/clear-data/clear-data.component';
 import { ContentPollComponent } from './components/poll/content-poll/content-poll.component';
 import { TotalCountComponent } from './components/poll/total-count/total-count.component';
+import { AddComponent } from './components/discussion/add/add.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TotalCountComponent } from './components/poll/total-count/total-count.c
     GuestCommentComponent,
     ClearDataComponent,
     ContentPollComponent,
-    TotalCountComponent
+    TotalCountComponent,
+    AddComponent
   ],
     imports: [
         BrowserModule,

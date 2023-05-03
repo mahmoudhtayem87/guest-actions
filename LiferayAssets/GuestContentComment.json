@@ -24,29 +24,6 @@
         "code": 1,
         "label": "success"
       }
-    },
-    {
-      "conditionExpression": "",
-      "objectActionExecutorKey": "groovy",
-      "errorMessage": {
-        "en_US": "test"
-      },
-      "active": true,
-      "description": "",
-      "label": {
-        "en_US": "Manual"
-      },
-      "externalReferenceCode": "d68fc16e-532e-e151-734d-aae1ffc3ace1",
-      "objectActionTriggerKey": "standalone",
-      "name": "manual",
-      "parameters": {
-        "script": "import com.liferay.portal.kernel.service.ServiceContext\nimport com.liferay.portal.kernel.service.ServiceContext;\nimport com.liferay.portal.kernel.util.GetterUtil;\nimport com.liferay.portal.kernel.model.Company;\nimport com.liferay.portal.kernel.model.UserConstants;\nimport com.liferay.portal.kernel.model.User;\nimport com.liferay.portal.kernel.service.CompanyLocalServiceUtil;\nimport com.liferay.portal.kernel.service.ServiceContext;\nimport com.liferay.portal.kernel.service.UserLocalServiceUtil;\nimport com.liferay.portal.kernel.util.LocaleUtil;\nimport com.liferay.portal.kernel.util.PortalUtil;\nimport java.util.Calendar;\nimport java.util.GregorianCalendar;\nimport com.liferay.portal.kernel.util.GetterUtil;\nimport com.liferay.portal.kernel.comment.CommentManagerUtil\n\ndef postComment(userId, groupId, className, classPK, commentBody,serviceContext)\n{\n    def userDisplayURLFunction = { _ -> serviceContext } // empty function to set userDisplayURL\n    // Add the comment to the blog entry\n    System.out.println CommentManagerUtil.addComment(userId, groupId, className, classPK, commentBody, userDisplayURLFunction)\n}\n\ndef obj = com.liferay.object.service.ObjectEntryLocalServiceUtil.getObjectEntry(id)\n\n\n\nServiceContext serviceContext  = new ServiceContext();\ndef classPK = GetterUtil.getLong(assetEntryId)\ndef commentBody = comment\ndef className = \"com.liferay.blogs.model.BlogsEntry\"\nlong groupId = GetterUtil.getLong('20119');\nlong companyId = GetterUtil.getLong(obj.companyId);\nCompany company = CompanyLocalServiceUtil.getCompany(companyId);\nString portalURL = company.getPortalURL(groupId);\nfinal long creatorUserId = GetterUtil.getLong('20123');\n\nserviceContext.setCompanyId(companyId);\nserviceContext.setUserId(creatorUserId);\nserviceContext.setPortalURL(portalURL);\nserviceContext.setPathMain(PortalUtil.getPathMain());\nserviceContext.setScopeGroupId(groupId);\n\nfinal boolean autoPassword = false;\nfinal String tempPassword = \"test\";\nfinal boolean autoScreenName = true;\nfinal boolean male = false;\nfinal boolean sendAccountCreationEmail = false;\nfinal long prefixId = -1L;\nfinal long suffixId = -1L;\nfinal long[] siteIds = [ groupId ];\nfinal Calendar dob = new GregorianCalendar(1970, 1, 1);\nlocale = LocaleUtil.getDefault();\nString firstName = \"Guest\";\nString lastName = \"User\";\nString emailAddress = \"temp_user_\"+ipAddress+\"@liferay.com\";\nString screenName = \"temp_user_\"+ipAddress;\nlong entryId =GetterUtil.getLong(assetEntryId);\n\n\n//todo validation required\n\n\nif(ratedByUserId == \"0\")\n{\n\n    User newUser =UserLocalServiceUtil.addUser(\n            0, companyId, false, firstName, lastName, false,\n            screenName, emailAddress, LocaleUtil.getDefault(), lastName,\n            null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null,\n            UserConstants.TYPE_REGULAR, null, null, null,\n            null, false, serviceContext);\n    long userId = newUser.userId\n    postComment(userId, groupId, className, classPK, commentBody,serviceContext)\n    def values = obj.getValues();\n    values[\"ratedByUserId\"] = userId;\n    obj.setValues(values);\n    com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);\n    UserLocalServiceUtil.deleteUser(userId)\n\n\n}else\n{\n\n    postComment(GetterUtil.getLong(ratedByUserId), groupId, className, classPK, commentBody,serviceContext)\n}\n\n\n\n\n\n"
-      },
-      "status": {
-        "label_i18n": "Never Ran",
-        "code": 0,
-        "label": "never-ran"
-      }
     }
   ],
   "accountEntryRestricted": false,
