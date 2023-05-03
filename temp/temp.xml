@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<root available-locales="en_US" default-locale="en_US" version="1.0">
+    <dynamic-element field-reference="DiscussionTitle" index-type="keyword" instance-id="kdPP3pkt" name="Text27378643"
+                     type="text">
+        <dynamic-content language-id="en_US"><![CDATA[4 343]]></dynamic-content>
+    </dynamic-element>
+    <dynamic-element field-reference="DescriptiveImage" index-type="keyword" instance-id="6G3vBID8"
+                     name="Upload16018135" type="document_library">
+        <dynamic-content language-id="en_US">
+            <![CDATA[{"extension":"png","size":"1325065","groupId":"20121","title":"MicrosoftTeams-image (3).png","type":"document","uuid":"d9d289b5-c667-3f91-62d5-7cfe00385964","fileEntryId":"45781","url":"/documents/portlet_file_entry/20121/MicrosoftTeams-image+%283%29.png/d9d289b5-c667-3f91-62d5-7cfe00385964?imagePreview=1"}]]></dynamic-content>
+    </dynamic-element>
+    <dynamic-element field-reference="Proposal" index-type="text" instance-id="UIxngC1N" name="RichText56687420"
+                     type="rich_text">
+        <dynamic-content language-id="en_US"><![CDATA[<p>234&nbsp;</p>]]></dynamic-content>
+    </dynamic-element>
+    <dynamic-element field-reference="Documents" index-type="keyword" instance-id="TP8ikBBS" name="Upload59450160"
+                     type="document_library">
+        <dynamic-content language-id="en_US">
+            <![CDATA[{"extension":"png","size":"1325065","groupId":"20121","title":"MicrosoftTeams-image (3).png","type":"document","uuid":"d9d289b5-c667-3f91-62d5-7cfe00385964","fileEntryId":"45781","url":"/documents/portlet_file_entry/20121/MicrosoftTeams-image+%283%29.png/d9d289b5-c667-3f91-62d5-7cfe00385964?imagePreview=1"}]]></dynamic-content>
+    </dynamic-element>
+    <dynamic-element field-reference="ScopeOfOperation" index-type="keyword" instance-id="dWm0BsOT"
+                     name="SelectFromList61233767" type="select">
+        <dynamic-content language-id="en_US"><![CDATA[[Option03496082]]]></dynamic-content>
+    </dynamic-element>
+    <dynamic-element field-reference="FullName" index-type="keyword" instance-id="z8Su4hAP" name="Text63641168"
+                     type="text">
+        <dynamic-content language-id="en_US"><![CDATA[234]]></dynamic-content>
+    </dynamic-element>
+    <dynamic-element field-reference="Location" index-type="keyword" instance-id="OXegv99n" name="Geolocation50526995"
+                     type="geolocation"/>
+</root>
+
+
+        <?xml version="1.0"?> <root available-locales="en_US" default-locale="en_US" version="1.0">
+<dynamic-element field-reference="DiscussionTitle" index-type="keyword" instance-id="h6f42z0u" name="Text27378643"
+                 type="text">
+    <dynamic-content language-id="en_US"><![CDATA[test]]></dynamic-content>
+</dynamic-element>
+<dynamic-element field-reference="DescriptiveImage" index-type="keyword" instance-id="b9LOHUjn" name="Upload16018135"
+                 type="document_library">
+    <dynamic-content language-id="en_US">
+        <![CDATA[{"extension":"png","size":"1325065","groupId":"20121","title":"MicrosoftTeams-image (3).png","type":"document","uuid":"d9d289b5-c667-3f91-62d5-7cfe00385964","fileEntryId":"45781","url":"/documents/portlet_file_entry/20121/MicrosoftTeams-image+%283%29.png/d9d289b5-c667-3f91-62d5-7cfe00385964?imagePreview=1"}]]></dynamic-content>
+</dynamic-element>
+<dynamic-element field-reference="Proposal" index-type="text" instance-id="spTUgPjb" name="RichText56687420"
+                 type="rich_text">
+    <dynamic-content language-id="en_US"><![CDATA[<p>ettw w&nbsp;</p>]]></dynamic-content>
+</dynamic-element>
+<dynamic-element field-reference="Documents" index-type="keyword" instance-id="OlPoREwV" name="Upload59450160"
+                 type="document_library">
+    <dynamic-content language-id="en_US">
+        <![CDATA[{"extension":"png","size":"1325065","groupId":"20121","title":"MicrosoftTeams-image (2).png","type":"document","uuid":"66be0f3c-2a9b-1e5b-5ef2-3f2a6db94631","fileEntryId":"45745","url":"/documents/portlet_file_entry/20121/MicrosoftTeams-image+%282%29.png/66be0f3c-2a9b-1e5b-5ef2-3f2a6db94631?imagePreview=1"}]]></dynamic-content>
+</dynamic-element>
+<dynamic-element field-reference="ScopeOfOperation" index-type="keyword" instance-id="q69dEw8U"
+                 name="SelectFromList61233767" type="select">
+    <dynamic-content language-id="en_US"><![CDATA[Option55280305]]></dynamic-content>
+</dynamic-element>
+<dynamic-element field-reference="FullName" index-type="keyword" instance-id="TE3aUR7i" name="Text63641168" type="text">
+    <dynamic-content language-id="en_US"><![CDATA[sdf sadf asdf]]></dynamic-content>
+</dynamic-element>
+<dynamic-element field-reference="Location" index-type="keyword" instance-id="d7JGserE" name="Geolocation50526995"
+                 type="geolocation">
+    <dynamic-content language-id="en_US"><![CDATA[{"lng":15.2592288,"lat":24.5351182}]]></dynamic-content>
+</dynamic-element>
+</root>
