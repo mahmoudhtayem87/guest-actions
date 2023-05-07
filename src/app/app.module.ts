@@ -10,6 +10,7 @@ import { ClearDataComponent } from './components/clear-data/clear-data.component
 import { ContentPollComponent } from './components/poll/content-poll/content-poll.component';
 import { TotalCountComponent } from './components/poll/total-count/total-count.component';
 import { AddComponent } from './components/discussion/add/add.component';
+import { CheckUserByEmailComponent } from './components/check-user-by-email/check-user-by-email.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AddComponent } from './components/discussion/add/add.component';
     ClearDataComponent,
     ContentPollComponent,
     TotalCountComponent,
-    AddComponent
+    AddComponent,
+    CheckUserByEmailComponent
   ],
     imports: [
         BrowserModule,
@@ -52,10 +54,17 @@ export class AppModule{
       injector: this.injector
     });
     customElements.define("content-poll", ContentPoll);
+
+
     const ContentPollTotalVotes = createCustomElement(TotalCountComponent, {
       injector: this.injector
     });
     customElements.define("content-poll-total", ContentPollTotalVotes);
+
+    const UserEmailValidation = createCustomElement(CheckUserByEmailComponent, {
+      injector: this.injector
+    });
+    customElements.define("guest-email-validation", UserEmailValidation);
 
   }
 }

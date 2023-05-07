@@ -1,0 +1,16 @@
+
+<div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" [(ngModel)]="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    </div>
+    <button (click)="validate()" type="button" class="btn btn-primary">Submit</button>
+</div>
+
+<div *ngIf="result">
+    <div class="alert">
+        User validation result:
+        <span *ngIf="result.validationResult == 0"> User not available</span>
+        <span *ngIf="result.validationResult == 1"> User is available</span>
+    </div>
+</div>

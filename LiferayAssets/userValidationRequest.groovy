@@ -44,7 +44,7 @@ def findUser(emailAddress,companyId)
         User user = UserLocalServiceUtil.getUserByEmailAddress(companyId, emailAddress)
 
         // Do something with the user object, for example:
-        return user.userId
+        return 1;
     } catch (PortalException pe) {
         // Handle exception
         pe.printStackTrace()
@@ -56,6 +56,6 @@ def findUser(emailAddress,companyId)
 def userId = findUser(email,companyId)
 
 def values = obj.getValues();
-values["testResult"] = userId;
+values["validationResult"] = userId;
 obj.setValues(values);
 com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);
