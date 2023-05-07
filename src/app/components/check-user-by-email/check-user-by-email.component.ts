@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {CheckUserByEmailService} from "../../services/check-user-by-email.service";
 
 @Component({
-  selector: 'app-check-user-by-email',
+  selector: 'guest-email-validation',
   templateUrl: './check-user-by-email.component.html',
   styleUrls: ['./check-user-by-email.component.css']
 })
