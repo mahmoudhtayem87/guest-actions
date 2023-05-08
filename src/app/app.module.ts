@@ -2,7 +2,7 @@ import {Injector, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
-import { RatingComponent } from './components/rating/rating.component';
+import { RatingComponent } from './components/rating-components/rating/rating.component';
 import {createCustomElement} from "@angular/elements";
 import { GuestCommentComponent } from './components/comment/comment.component';
 import {FormsModule} from "@angular/forms";
@@ -11,6 +11,7 @@ import { ContentPollComponent } from './components/poll/content-poll/content-pol
 import { TotalCountComponent } from './components/poll/total-count/total-count.component';
 import { AddComponent } from './components/discussion/add/add.component';
 import { CheckUserByEmailComponent } from './components/check-user-by-email/check-user-by-email.component';
+import { RatingTwoOptionsComponent } from './components/rating-components/rating-two-options/rating-two-options.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CheckUserByEmailComponent } from './components/check-user-by-email/chec
     ContentPollComponent,
     TotalCountComponent,
     AddComponent,
-    CheckUserByEmailComponent
+    CheckUserByEmailComponent,
+    RatingTwoOptionsComponent
   ],
     imports: [
         BrowserModule,
@@ -65,6 +67,11 @@ export class AppModule{
       injector: this.injector
     });
     customElements.define("guest-email-validation", UserEmailValidation);
+
+    const RatingTwoOptions = createCustomElement(RatingTwoOptionsComponent, {
+      injector: this.injector
+    });
+    customElements.define("guest-rating-two-options", RatingTwoOptions);
 
   }
 }

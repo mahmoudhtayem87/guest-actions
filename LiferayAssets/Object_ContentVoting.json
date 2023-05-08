@@ -1,1 +1,216 @@
-{"enableComments":false,"objectRelationships":[],"accountEntryRestrictedObjectFieldId":0,"enableCategorization":true,"objectActions":[],"accountEntryRestricted":false,"externalReferenceCode":"34247c4c-48fb-0b3f-9b2e-30391c014717","objectFields":[{"indexed":false,"defaultValue":"","objectFieldSettings":[],"DBType":"Date","label":{"en_US":"Create Date"},"type":"Date","required":false,"externalReferenceCode":"ac487e68-d9d2-f3b1-ac43-33b8816b591b","indexedAsKeyword":false,"system":true,"indexedLanguageId":"","name":"createDate","state":false,"businessType":"Date"},{"indexed":false,"defaultValue":"","objectFieldSettings":[],"DBType":"String","label":{"en_US":"Author"},"type":"String","required":false,"externalReferenceCode":"cf1ab4b8-510d-136b-6b6e-c37a13696544","indexedAsKeyword":false,"system":true,"indexedLanguageId":"","name":"creator","state":false,"businessType":"Text"},{"indexed":true,"defaultValue":"","objectFieldSettings":[{"name":"showCounter","value":"false"}],"DBType":"String","label":{"en_US":"EntryId"},"type":"String","required":true,"externalReferenceCode":"7aa0965e-62f6-2b2e-e0f5-c98fa2d31aeb","indexedAsKeyword":false,"system":false,"indexedLanguageId":"en_US","name":"entryId","state":false,"businessType":"Text"},{"indexed":false,"defaultValue":"","objectFieldSettings":[],"DBType":"String","label":{"en_US":"External Reference Code"},"type":"String","required":false,"externalReferenceCode":"b11f4f65-3b24-8d48-e6cf-b2f5ebc41fbd","indexedAsKeyword":false,"system":true,"indexedLanguageId":"","name":"externalReferenceCode","state":false,"businessType":"Text"},{"indexed":true,"defaultValue":"","objectFieldSettings":[],"DBType":"Long","label":{"en_US":"ID"},"type":"Long","required":false,"externalReferenceCode":"2d92de82-ced9-eb60-f3a5-05b4b375e18c","indexedAsKeyword":true,"system":true,"indexedLanguageId":"","name":"id","state":false,"businessType":"LongInteger"},{"indexed":true,"defaultValue":"","objectFieldSettings":[{"name":"showCounter","value":"false"}],"DBType":"String","label":{"en_US":"IPAddress"},"type":"String","required":false,"externalReferenceCode":"0e02bd3b-af4f-0763-ad79-536202447435","indexedAsKeyword":false,"system":false,"indexedLanguageId":"en_US","name":"ipAddress","state":false,"businessType":"Text"},{"indexed":false,"defaultValue":"","objectFieldSettings":[],"DBType":"Date","label":{"en_US":"Modified Date"},"type":"Date","required":false,"externalReferenceCode":"38bd03dc-e149-49f4-e717-a2568a351a6c","indexedAsKeyword":false,"system":true,"indexedLanguageId":"","name":"modifiedDate","state":false,"businessType":"Date"},{"indexed":false,"defaultValue":"","objectFieldSettings":[],"DBType":"String","label":{"en_US":"Status"},"type":"String","required":false,"externalReferenceCode":"042e3bd4-32ce-c66e-7a59-c9521fb43d19","indexedAsKeyword":false,"system":true,"indexedLanguageId":"","name":"status","state":false,"businessType":"Text"},{"indexed":true,"defaultValue":"","objectFieldSettings":[{"name":"showCounter","value":"false"}],"DBType":"String","label":{"en_US":"VoteValue"},"type":"String","required":true,"externalReferenceCode":"df36b6b9-2e42-a792-6f51-fab75b4ed15d","indexedAsKeyword":false,"system":false,"indexedLanguageId":"en_US","name":"voteValue","state":false,"businessType":"Text"}],"scope":"company","portlet":false,"parameterRequired":false,"enableObjectEntryHistory":false,"titleObjectFieldName":"createDate","active":true,"label":{"en_US":"Content Voting"},"panelCategoryKey":"applications_menu.applications.custom.apps","pluralLabel":{"en_US":"Content Votings"},"objectLayouts":[],"system":false,"objectViews":[],"name":"ContentVoting","actions":{"permissions":{},"get":{},"update":{},"delete":{}},"status":{"label_i18n":"Approved","code":0,"label":"approved"}}
+{
+  "enableComments": false,
+  "objectRelationships": [],
+  "accountEntryRestrictedObjectFieldId": 0,
+  "enableCategorization": true,
+  "objectActions": [],
+  "accountEntryRestricted": false,
+  "externalReferenceCode": "34247c4c-48fb-0b3f-9b2e-30391c014717",
+  "objectFields": [
+    {
+      "indexed": false,
+      "defaultValue": "",
+      "objectFieldSettings": [],
+      "DBType": "Date",
+      "label": {
+        "en_US": "Create Date"
+      },
+      "type": "Date",
+      "required": false,
+      "externalReferenceCode": "ac487e68-d9d2-f3b1-ac43-33b8816b591b",
+      "indexedAsKeyword": false,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "createDate",
+      "state": false,
+      "businessType": "Date"
+    },
+    {
+      "indexed": false,
+      "defaultValue": "",
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "Author"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "cf1ab4b8-510d-136b-6b6e-c37a13696544",
+      "indexedAsKeyword": false,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "creator",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": true,
+      "defaultValue": "",
+      "objectFieldSettings": [
+        {
+          "name": "showCounter",
+          "value": "false"
+        }
+      ],
+      "DBType": "String",
+      "label": {
+        "en_US": "EntryId"
+      },
+      "type": "String",
+      "required": true,
+      "externalReferenceCode": "7aa0965e-62f6-2b2e-e0f5-c98fa2d31aeb",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "entryId",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": false,
+      "defaultValue": "",
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "External Reference Code"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "b11f4f65-3b24-8d48-e6cf-b2f5ebc41fbd",
+      "indexedAsKeyword": false,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "externalReferenceCode",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": true,
+      "defaultValue": "",
+      "objectFieldSettings": [],
+      "DBType": "Long",
+      "label": {
+        "en_US": "ID"
+      },
+      "type": "Long",
+      "required": false,
+      "externalReferenceCode": "2d92de82-ced9-eb60-f3a5-05b4b375e18c",
+      "indexedAsKeyword": true,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "id",
+      "state": false,
+      "businessType": "LongInteger"
+    },
+    {
+      "indexed": true,
+      "defaultValue": "",
+      "objectFieldSettings": [
+        {
+          "name": "showCounter",
+          "value": "false"
+        }
+      ],
+      "DBType": "String",
+      "label": {
+        "en_US": "IPAddress"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "0e02bd3b-af4f-0763-ad79-536202447435",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "ipAddress",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": false,
+      "defaultValue": "",
+      "objectFieldSettings": [],
+      "DBType": "Date",
+      "label": {
+        "en_US": "Modified Date"
+      },
+      "type": "Date",
+      "required": false,
+      "externalReferenceCode": "38bd03dc-e149-49f4-e717-a2568a351a6c",
+      "indexedAsKeyword": false,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "modifiedDate",
+      "state": false,
+      "businessType": "Date"
+    },
+    {
+      "indexed": false,
+      "defaultValue": "",
+      "objectFieldSettings": [],
+      "DBType": "String",
+      "label": {
+        "en_US": "Status"
+      },
+      "type": "String",
+      "required": false,
+      "externalReferenceCode": "042e3bd4-32ce-c66e-7a59-c9521fb43d19",
+      "indexedAsKeyword": false,
+      "system": true,
+      "indexedLanguageId": "",
+      "name": "status",
+      "state": false,
+      "businessType": "Text"
+    },
+    {
+      "indexed": true,
+      "defaultValue": "",
+      "objectFieldSettings": [
+        {
+          "name": "showCounter",
+          "value": "false"
+        }
+      ],
+      "DBType": "String",
+      "label": {
+        "en_US": "VoteValue"
+      },
+      "type": "String",
+      "required": true,
+      "externalReferenceCode": "df36b6b9-2e42-a792-6f51-fab75b4ed15d",
+      "indexedAsKeyword": false,
+      "system": false,
+      "indexedLanguageId": "en_US",
+      "name": "voteValue",
+      "state": false,
+      "businessType": "Text"
+    }
+  ],
+  "scope": "company",
+  "portlet": false,
+  "parameterRequired": false,
+  "enableObjectEntryHistory": false,
+  "titleObjectFieldName": "createDate",
+  "active": true,
+  "label": {
+    "en_US": "Content Voting"
+  },
+  "panelCategoryKey": "applications_menu.applications.custom.apps",
+  "pluralLabel": {
+    "en_US": "Content Votings"
+  },
+  "objectLayouts": [],
+  "system": false,
+  "objectViews": [],
+  "name": "ContentVoting",
+  "actions": {
+    "permissions": {},
+    "get": {},
+    "update": {},
+    "delete": {}
+  },
+  "status": {
+    "label_i18n": "Approved",
+    "code": 0,
+    "label": "approved"
+  }
+}

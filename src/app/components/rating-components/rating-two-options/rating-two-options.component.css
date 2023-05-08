@@ -1,0 +1,18 @@
+.active
+{
+    cursor: pointer!important;
+}
+.active *
+{
+    cursor: pointer!important;
+}
+
+
+.inactive
+{
+    cursor:not-allowed!important;
+}
+.inactive *
+{
+    cursor: not-allowed!important;
+}

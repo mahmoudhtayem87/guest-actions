@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {IpUtilService} from "../../services/ip-util.service";
-import {RatingService} from "../../services/rating.service";
+import {IpUtilService} from "../../../services/ip-util.service";
+import {RatingService} from "../../../services/rating.service";
 import {last} from "rxjs";
 
 @Component({
@@ -27,8 +27,6 @@ export class RatingComponent {
   async loadData()
   {
     this.isLoading = true;
-
-
     this.IPAddress = (await this.ip.getCurrentUserIpAddress()).ip;
     // @ts-ignore
     let ratingResponse = await this.ratingService.getRating(this.entryId,this.entryType);
@@ -39,7 +37,6 @@ export class RatingComponent {
       this.Rating = ratingResponse["aggregateRating"]["ratingValue"];
     }else
       this.Rating = 0;
-
     // @ts-ignore
     this.lastAction = await this.ratingService.getRatingByIPAddress(this.IPAddress,this.entryId);
     this.getThumbColor();
@@ -63,7 +60,7 @@ export class RatingComponent {
   }
   async postRating() {
     this.isLoading = true;
-    await this.ratingService.submitRating(this.IPAddress,this.entryId,this.entryType,1);
+    await this.ratingService.submitRatingAuto(this.IPAddress,this.entryId,this.entryType,1);
     this.isLoading = false;
     await this.loadData();
   }
