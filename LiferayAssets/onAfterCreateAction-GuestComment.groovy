@@ -79,19 +79,35 @@ def className = getClassName();
 
 if(ratedByUserId == "0")
 {
+    User newUser = null;
+    try{
 
-    User newUser =UserLocalServiceUtil.addUser(
-            0, companyId, false, "test", "test", false,
-            screenName, emailAddress, LocaleUtil.getDefault(), firstName,
-            null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null, null, null, null,
-            null, false, serviceContext);
-    long userId = newUser.userId
-    postComment(userId, groupId, className, classPK, commentBody,serviceContext)
-    UserLocalServiceUtil.deleteUser(userId)
-    def values = obj.getValues();
-    values["ratedByUserId"] = userId;
-    obj.setValues(values);
-    com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);
+         newUser =UserLocalServiceUtil.addUser(
+                0, companyId, false, "test", "test", false,
+                screenName, emailAddress, LocaleUtil.getDefault(), firstName,
+                null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null, null, null, null,
+                null, false, serviceContext);
+        long userId = newUser.userId
+        postComment(userId, groupId, className, classPK, commentBody,serviceContext)
+        def obj_Update = com.liferay.object.service.ObjectEntryLocalServiceUtil.getObjectEntry(id)
+        def values = obj.getValues();
+        values["ratedByUserId"] = userId;
+        obj.setValues(values);
+        com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);
+
+    }catch (exp)
+    {
+    }finally {
+        if(newUser)
+        {
+            long userId = newUser.userId
+            UserLocalServiceUtil.deleteUser(userId)
+        }
+    }
+
+
+
+
 
 
 
