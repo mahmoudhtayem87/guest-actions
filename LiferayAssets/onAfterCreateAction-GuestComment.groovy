@@ -97,23 +97,17 @@ if(ratedByUserId == "0")
 
     }catch (exp)
     {
-    }finally {
+    }finally
+    {
         if(newUser)
         {
             long userId = newUser.userId
             UserLocalServiceUtil.deleteUser(userId)
         }
     }
-
-
-
-
-
-
-
-}else
+}
+else
 {
-
     postComment(GetterUtil.getLong(ratedByUserId), groupId, className, classPK, commentBody,serviceContext)
 }
 
