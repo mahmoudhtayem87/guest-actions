@@ -45,7 +45,7 @@ ServiceContext serviceContext  = new ServiceContext();
 def classPK = GetterUtil.getLong(assetEntryId)
 def commentBody = comment
 
-long groupId = GetterUtil.getLong('20121');
+long groupId =  GetterUtil.getLong('20121');
 long companyId = GetterUtil.getLong(obj.companyId);
 Company company = CompanyLocalServiceUtil.getCompany(companyId);
 String portalURL = company.getPortalURL(groupId);
@@ -87,11 +87,12 @@ if(ratedByUserId == "0")
             null, false, serviceContext);
     long userId = newUser.userId
     postComment(userId, groupId, className, classPK, commentBody,serviceContext)
+    UserLocalServiceUtil.deleteUser(userId)
     def values = obj.getValues();
     values["ratedByUserId"] = userId;
     obj.setValues(values);
     com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);
-    UserLocalServiceUtil.deleteUser(userId)
+
 
 
 }else
