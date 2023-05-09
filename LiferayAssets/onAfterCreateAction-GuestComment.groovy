@@ -14,26 +14,31 @@ import java.util.GregorianCalendar;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.comment.CommentManagerUtil
 
+//com.liferay.object.model.ObjectDefinition#44538
 
 def getClassName()
 {
     switch (assetEntryType)
     {
+        case "journalArticle":
+            return "com.liferay.journal.model.JournalArticle";
+            break;
         case "blog":
             return "com.liferay.blogs.model.BlogsEntry";
         case "object":
-            return 'com.liferay.object.model.ObjectDefinition';
+            return 'com.liferay.object.model.ObjectDefinition#'+objectDefinitionId;
     }
 }
 
 def postComment(userId, groupId, className, classPK, commentBody,serviceContext)
 {
     def userDisplayURLFunction = { _ -> serviceContext } // empty function to set userDisplayURL
-    // Add the comment to the entry
+    // Add the comment to the blog entry
     System.out.println CommentManagerUtil.addComment(userId, groupId, className, classPK, commentBody, userDisplayURLFunction)
 }
 
 def obj = com.liferay.object.service.ObjectEntryLocalServiceUtil.getObjectEntry(id)
+
 
 
 ServiceContext serviceContext  = new ServiceContext();
@@ -78,24 +83,20 @@ if(ratedByUserId == "0")
     User newUser =UserLocalServiceUtil.addUser(
             0, companyId, false, "test", "test", false,
             screenName, emailAddress, LocaleUtil.getDefault(), firstName,
-            null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null,
-            UserConstants.TYPE_REGULAR, null, null, null,
+            null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null, null, null, null,
             null, false, serviceContext);
     long userId = newUser.userId
-    //post the comment with temp user id
     postComment(userId, groupId, className, classPK, commentBody,serviceContext)
-
     def values = obj.getValues();
     values["ratedByUserId"] = userId;
     obj.setValues(values);
     com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);
-    //delete temp user after posting the comment
     UserLocalServiceUtil.deleteUser(userId)
 
 
 }else
 {
-    // post comment with the current signed in user id
+
     postComment(GetterUtil.getLong(ratedByUserId), groupId, className, classPK, commentBody,serviceContext)
 }
 
