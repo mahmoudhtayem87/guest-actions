@@ -73,7 +73,7 @@ String emailAddress = "temp_user_"+ipAddress+"@liferay.com";
 String screenName = "temp_user_"+ipAddress;
 long entryId =GetterUtil.getLong(assetEntryId);
 def className = getClassName();
-
+def guestUserId = GetterUtil.getLong('56097');
 //todo validation required
 
 
@@ -88,15 +88,16 @@ if(ratedByUserId == "0")
                 null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null, null, null, null,
                 null, false, serviceContext);
         long userId = newUser.userId
-        postComment(userId, groupId, className, classPK, commentBody,serviceContext)
+        postComment(guestUserId, groupId, className, classPK, commentBody,serviceContext)
         def obj_Update = com.liferay.object.service.ObjectEntryLocalServiceUtil.getObjectEntry(id)
         def values = obj.getValues();
-        values["ratedByUserId"] = userId;
+        values["ratedByUserId"] = guestUserId;
         obj.setValues(values);
         com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);
 
     }catch (exp)
     {
+        System.out.println (exp.getMessage())
     }finally
     {
         if(newUser)
