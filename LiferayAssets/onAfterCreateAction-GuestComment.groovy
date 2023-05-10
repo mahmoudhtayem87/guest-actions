@@ -81,20 +81,12 @@ if(ratedByUserId == "0")
 {
     User newUser = null;
     try{
-
-         newUser =UserLocalServiceUtil.addUser(
-                0, companyId, false, "test", "test", false,
-                screenName, emailAddress, LocaleUtil.getDefault(), firstName,
-                null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null, null, null, null,
-                null, false, serviceContext);
-        long userId = newUser.userId
         postComment(guestUserId, groupId, className, classPK, commentBody,serviceContext)
         def obj_Update = com.liferay.object.service.ObjectEntryLocalServiceUtil.getObjectEntry(id)
         def values = obj.getValues();
         values["ratedByUserId"] = guestUserId;
         obj.setValues(values);
         com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);
-
     }catch (exp)
     {
         System.out.println (exp.getMessage())
