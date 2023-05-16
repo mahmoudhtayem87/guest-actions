@@ -15,7 +15,7 @@ export class ClearDataComponent {
   getData()
   {
     var prom = new Promise((resolve, reject)=>{
-      this.http.get(`/o/c/${this.object}?p_auth=${Liferay.authToken}`).subscribe(result=>{resolve(result)})
+      this.http.get(`/o/c/${this.object}?page=0&p_auth=${Liferay.authToken}`).subscribe(result=>{resolve(result)})
     });
     return prom;
   }

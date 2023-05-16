@@ -36,7 +36,20 @@ export class ContentPollComponent implements OnInit{
 
   @Input('actionClasses')
   public actionClasses: any = "";
+  public imgSrc = "";
+  public isModleVisible : boolean = false;
+  public showModle(imgUrl:any)
+  {
+    this.imgSrc = imgUrl;
+    this.isModleVisible = true;
 
+  }
+  public hideModle()
+  {
+    this.imgSrc = "";
+    this.isModleVisible = false;
+
+  }
   public entryKey = "";
   async prepareResults() {
     //this.pollResult.facets[0].facetValues
