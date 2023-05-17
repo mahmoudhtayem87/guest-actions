@@ -14,7 +14,7 @@ export class CommentService {
 
 
 
-  public async submitComment(ip:any,entryId:any,entryType:any,comment:any,objectDefinitionId="")
+  public async submitComment(ip:any,entryId:any,entryType:any,comment:any,objectDefinitionId="",recaptcha:string="")
   {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -29,7 +29,7 @@ export class CommentService {
       assetEntryType:entryType,
       comment:comment,
       ratedByUserId : currentUser,
-      recaptcha:'',
+      recaptcha:recaptcha,
       lastActionUserId:'',
       objectDefinitionId:objectDefinitionId
     }

@@ -12,6 +12,7 @@ import { TotalCountComponent } from './components/poll/total-count/total-count.c
 import { AddComponent } from './components/discussion/add/add.component';
 import { CheckUserByEmailComponent } from './components/check-user-by-email/check-user-by-email.component';
 import { RatingTwoOptionsComponent } from './components/rating-components/rating-two-options/rating-two-options.component';
+import { RecaptchaV3Module, RECAPTCHA_V3_SITE_KEY } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,13 @@ import { RatingTwoOptionsComponent } from './components/rating-components/rating
     imports: [
         BrowserModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+      RecaptchaV3Module
     ],
-  providers: [],
+  providers: [{
+    provide: RECAPTCHA_V3_SITE_KEY,
+    useValue: '6LdWSdglAAAAAIoDT_GHwy3Jf6WKud6ChZ67TQkw',
+  }],
   bootstrap: []
 })
 export class AppModule{
