@@ -13,8 +13,28 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.comment.CommentManagerUtil
+import com.liferay.portal.kernel.json.JSONFactoryUtil
 
-//com.liferay.object.model.ObjectDefinition#44538
+
+def ValidateToken(token)
+{
+    def secretKey = '6LdWSdglAAAAAJKOWiQYNn_115dYhAcTbw6xH3dk'
+    def url = 'https://www.google.com/recaptcha/api/siteverify?secret='+secretKey+'&response='+token
+    def postmanGet = new URL(url)
+    def getConnection = postmanGet.openConnection()
+    getConnection.requestMethod = 'GET'
+
+    if(getConnection.responseCode == 200)
+    {
+        def result = JSONFactoryUtil.createJSONObject(getConnection.content.text);
+        if(result["success"] == "true")
+            return true;
+        else
+            return false;
+    }else
+        return false;
+
+}
 
 def getClassName()
 {
@@ -76,43 +96,40 @@ def className = getClassName();
 
 //todo validation required
 
-
-if(ratedByUserId == "0")
+if(ValidateToken(recaptcha_))
 {
-    User newUser = null;
-    try{
-
-         newUser =UserLocalServiceUtil.addUser(
-                0, companyId, false, "test", "test", false,
-                screenName, emailAddress, LocaleUtil.getDefault(), firstName,
-                null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null, null, null, null,
-                null, false, serviceContext);
-        long userId = newUser.userId
-        postComment(userId, groupId, className, classPK, commentBody,serviceContext)
-        def obj_Update = com.liferay.object.service.ObjectEntryLocalServiceUtil.getObjectEntry(id)
-        def values = obj.getValues();
-        values["ratedByUserId"] = userId;
-        obj.setValues(values);
-        com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);
-
-    }catch (exp)
+    if(ratedByUserId == "0")
     {
-        System.out.println (exp.getMessage())
-    }finally
-    {
-        if(newUser)
-        {
+        User newUser = null;
+        try{
+
+            newUser =UserLocalServiceUtil.addUser(
+                    0, companyId, false, "test", "test", false,
+                    screenName, emailAddress, LocaleUtil.getDefault(), firstName,
+                    null, lastName, 0, 0, true, Calendar.JANUARY, 1, 1970, null, null, null, null,
+                    null, false, serviceContext);
             long userId = newUser.userId
-            UserLocalServiceUtil.deleteUser(userId)
+            postComment(userId, groupId, className, classPK, commentBody,serviceContext)
+            def obj_Update = com.liferay.object.service.ObjectEntryLocalServiceUtil.getObjectEntry(id)
+            def values = obj.getValues();
+            values["ratedByUserId"] = userId;
+            obj.setValues(values);
+            com.liferay.object.service.ObjectEntryLocalServiceUtil.updateObjectEntry(creatorUserId,id,values,serviceContext);
+
+        }catch (exp)
+        {
+            System.out.println (exp.getMessage())
+        }finally
+        {
+            if(newUser)
+            {
+                long userId = newUser.userId
+                UserLocalServiceUtil.deleteUser(userId)
+            }
         }
     }
+    else
+    {
+        postComment(GetterUtil.getLong(ratedByUserId), groupId, className, classPK, commentBody,serviceContext)
+    }
 }
-else
-{
-    postComment(GetterUtil.getLong(ratedByUserId), groupId, className, classPK, commentBody,serviceContext)
-}
-
-
-
-
-
